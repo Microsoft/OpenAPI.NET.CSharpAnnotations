@@ -615,7 +615,8 @@
         "required": [
           "samplePropertyString3",
           "samplePropertyString4",
-          "samplePropertyEnum"
+          "samplePropertyEnum",
+          "samplePropertyTimespan"
         ],
         "type": "object",
         "properties": {
@@ -651,6 +652,10 @@
             ],
             "type": "string",
             "description": "Gets or sets the sample property enum"
+          },
+          "samplePropertyTimespan": {
+            "type": "string",
+            "description": "Gets or sets the sample timespan"
           }
         }
       },

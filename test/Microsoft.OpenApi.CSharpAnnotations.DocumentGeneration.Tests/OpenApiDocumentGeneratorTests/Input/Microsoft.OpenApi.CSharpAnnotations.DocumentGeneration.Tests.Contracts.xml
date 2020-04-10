@@ -89,6 +89,11 @@
             Gets or sets the sample property enum
             </summary>
         </member>
+        <member name="P:Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject1.SamplePropertyTimespan">
+            <summary>
+            Gets or sets the sample timespan
+            </summary>
+        </member>
         <member name="T:Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject2">
             <summary>
             Sample contract for object 2

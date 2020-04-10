@@ -4,6 +4,7 @@
 // ------------------------------------------------------------
 
 using Newtonsoft.Json;
+using System;
 
 namespace Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts
 {
@@ -53,5 +54,11 @@ namespace Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts
         /// </summary>
         [JsonProperty(PropertyName = "samplePropertyEnum", Required = Required.Always)]
         public SampleEnum1 SamplePropertyEnum { get; set; }
+
+        /// <summary>
+        /// Gets or sets the sample timespan
+        /// </summary>
+        [JsonProperty(PropertyName = "samplePropertyTimespan", Required = Required.Always)]
+        public TimeSpan SamplePropertyTimespan { get; set; }
     }
 }

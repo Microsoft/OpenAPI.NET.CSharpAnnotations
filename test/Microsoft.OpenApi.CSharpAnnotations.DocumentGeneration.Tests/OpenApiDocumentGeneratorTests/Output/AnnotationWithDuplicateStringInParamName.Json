@@ -26,25 +26,25 @@
               "$ref": "#/components/schemas/Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject1"
             }
           },
-            {
-                "name": "sample-Header-Param2",
-                "in": "header",
-                "description": "Header param 2",
-                "schema": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/components/schemas/Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.ISampleObject4_Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject1-Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject2_"
-                    }
-                }
-            },
-            {
-                "name": "$sampleHeaderParam3",
-                "in": "header",
-                "description": "Header param 3",
-                "schema": {
-                    "type": "string"
-                }
-            },
+          {
+            "name": "sample-Header-Param2",
+            "in": "header",
+            "description": "Header param 2",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.ISampleObject4_Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject1-Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject2_"
+              }
+            }
+          },
+          {
+            "name": "$sampleHeaderParam3",
+            "in": "header",
+            "description": "Header param 3",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "id",
             "in": "path",
@@ -641,7 +641,8 @@
         "required": [
           "samplePropertyString3",
           "samplePropertyString4",
-          "samplePropertyEnum"
+          "samplePropertyEnum",
+          "samplePropertyTimespan"
         ],
         "type": "object",
         "properties": {
@@ -677,6 +678,10 @@
             ],
             "type": "string",
             "description": "Gets or sets the sample property enum"
+          },
+          "samplePropertyTimespan": {
+            "type": "string",
+            "description": "Gets or sets the sample timespan"
           }
         }
       },
