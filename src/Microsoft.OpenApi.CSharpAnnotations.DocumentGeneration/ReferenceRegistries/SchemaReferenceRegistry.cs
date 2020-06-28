@@ -6,7 +6,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Exceptions;
 using Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Extensions;
@@ -194,8 +197,58 @@ namespace Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.ReferenceRegist
                 }
 
                 var a = input.FullName;
+                    
+                PropertyInfo[] propertyInfos;
+                if (_schemaGenerationSettings.IncludeInheritanceInformation)
+                {
+                    propertyInfos = input.GetProperties(BindingFlags.Public | BindingFlags.DeclaredOnly | BindingFlags.Instance);
+                
+                    if (input.BaseType != typeof(object))
+                    {
+                        var baseClassSchema = FindOrAddReference(input.BaseType);
 
-                foreach (var propertyInfo in input.GetProperties())
+                        schema.AllOf.Add(baseClassSchema);
+                    }
+
+                    if (_schemaGenerationSettings.DiscriminatorResolver != null)
+                    {
+                        var xmlIncludeAttributes = input.GetCustomAttributes<XmlIncludeAttribute>(false).ToArray();
+
+                        if (xmlIncludeAttributes.Length > 0)
+                        {
+                            var discriminatorProperty = _schemaGenerationSettings.DiscriminatorResolver.ResolveProperty(input);
+
+                            if (discriminatorProperty != null)
+                            {
+                                var openApiDiscriminator = new OpenApiDiscriminator()
+                                {
+                                    PropertyName = discriminatorProperty.Name,
+                                    Mapping = new Dictionary<string, string>()
+                                };
+
+                                schema.Discriminator = openApiDiscriminator;
+
+                                foreach (var xmlIncludeAttribute in xmlIncludeAttributes)
+                                {
+                                    var childSchema = FindOrAddReference(xmlIncludeAttribute.Type);
+                                    
+                                    schema.OneOf.Add(childSchema);
+
+                                    var mappingKey = _schemaGenerationSettings.DiscriminatorResolver.ResolveMappingKey(discriminatorProperty, xmlIncludeAttribute.Type);
+
+                                    openApiDiscriminator.Mapping[mappingKey] = childSchema.Reference.ReferenceV3;
+                                }
+
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    propertyInfos = input.GetProperties();
+                }
+
+                foreach (var propertyInfo in propertyInfos)
                 {
                     var ignoreProperty = false;
 
@@ -318,11 +371,7 @@ namespace Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.ReferenceRegist
         /// </remarks>
         internal override string GetKey(Type input)
         {
-            // Type.ToString() returns full name for non-generic types and
-            // returns a full name without unnecessary assembly information for generic types.
-            var typeName = input.ToString();
-
-            return typeName.SanitizeClassName();
+            return _schemaGenerationSettings.SchemaIdResolver.ResolveSchemaId(input);
         }
     }
 }

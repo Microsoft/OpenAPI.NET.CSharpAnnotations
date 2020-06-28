@@ -3,6 +3,7 @@
 //  Licensed under the MIT License (MIT). See LICENSE in the repo root for license information.
 // ------------------------------------------------------------
 
+using System;
 using System.Reflection;
 using Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Extensions;
 
@@ -11,6 +12,7 @@ namespace Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration
     /// <summary>
     /// Resolves property name by camel casing.
     /// </summary>
+    [Serializable]
     public class CamelCasePropertyNameResolver : DefaultPropertyNameResolver, IPropertyNameResolver
     {
         /// <summary>

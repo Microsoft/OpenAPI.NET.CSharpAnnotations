@@ -3,6 +3,7 @@
 //  Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
+using System;
 using System.Linq;
 using System.Reflection;
 using Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.ReferenceRegistries;
@@ -12,6 +13,7 @@ namespace Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration
     /// <summary>
     /// Used by <see cref="SchemaReferenceRegistry"/> to resolve property name for a given <see cref="PropertyInfo"/>.
     /// </summary>
+    [Serializable]
     public class DefaultPropertyNameResolver : IPropertyNameResolver
     {
         /// <summary>

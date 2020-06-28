@@ -146,14 +146,14 @@ namespace Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.AssemblyLoader
         /// <param name="operationElements">The operation xelements.</param>
         /// <param name="propertyElements">The property xelements</param>
         /// <param name="documentVariantElementName">The document variant element name.</param>
-        /// <param name="internalSchemaGenerationSettings"><see cref="InternalSchemaGenerationSettings"/></param>
+        /// <param name="schemaGenerationSettings"><see cref="SchemaGenerationSettings"/></param>
         /// <returns>Serialized <see cref="InternalGenerationContext"/></returns>
         public string BuildInternalGenerationContext(
             IList<string> contractAssembliesPaths,
             IList<string> operationElements,
             IList<string> propertyElements,
             string documentVariantElementName,
-            InternalSchemaGenerationSettings internalSchemaGenerationSettings)
+            SchemaGenerationSettings schemaGenerationSettings)
         {
             var crefSchemaMap = new Dictionary<string, InternalSchemaGenerationInfo>();
 
@@ -174,14 +174,6 @@ namespace Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.AssemblyLoader
             }
 
             var referenceRegistryMap = new Dictionary<DocumentVariantInfo, SchemaReferenceRegistry>();
-
-            var schemaGenerationSettings = new SchemaGenerationSettings(new DefaultPropertyNameResolver());
-
-            if (internalSchemaGenerationSettings.PropertyNameResolverName ==
-                 typeof(CamelCasePropertyNameResolver).FullName)
-            {
-                schemaGenerationSettings = new SchemaGenerationSettings(new CamelCasePropertyNameResolver());
-            }
 
             var internalGenerationContext = new InternalGenerationContext();
 

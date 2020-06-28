@@ -271,14 +271,8 @@ namespace Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration
 
             try
             {
-                var propertyNameResolverTypeName = _openApiDocumentGenerationSettings.SchemaGenerationSettings
-                    .PropertyNameResolver.GetType().FullName;
 
                 var internalGenerationContext = new InternalGenerationContext();
-                var internalSchemaGenerationSettings = new InternalSchemaGenerationSettings()
-                {
-                    PropertyNameResolverName = propertyNameResolverTypeName
-                };
 
                 generationDiagnostic = new GenerationDiagnostic();
                 var documentGenerationDiagnostic = new DocumentGenerationDiagnostic();
@@ -310,7 +304,7 @@ namespace Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration
                     serializedOperationElements,
                     propertyElements.Select(i => i.ToString()).ToList(),
                     documentVariantElementNames.FirstOrDefault(),
-                    internalSchemaGenerationSettings);
+                    _openApiDocumentGenerationSettings.SchemaGenerationSettings);
 
                 internalGenerationContext =
                       (InternalGenerationContext)JsonConvert.DeserializeObject(
@@ -325,7 +319,7 @@ namespace Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration
                         serializedOperationElements,
                         propertyElements.Select(i => i.ToString()).ToList(),
                         documentVariantElementNames.FirstOrDefault(),
-                        internalSchemaGenerationSettings);
+                        _openApiDocumentGenerationSettings.SchemaGenerationSettings);
 
                     internalGenerationContext =
                         (InternalGenerationContext)JsonConvert.DeserializeObject(
