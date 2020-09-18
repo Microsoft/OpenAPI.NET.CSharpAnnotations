@@ -1094,6 +1094,56 @@ namespace Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.OpenApiDo
                     OutputDirectory,
                     "AnnotationWithRuntimeSerialization.Json")
             };
+
+            yield return new object[]
+            {
+                "All operations have predefined operation Id",
+                new List<string>
+                {
+                    Path.Combine(InputDirectory, "AnnotationPredefinedOperationId.xml"),
+                    Path.Combine(InputDirectory,
+                        "Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.xml")
+                },
+                new List<string>
+                {
+                    Path.Combine(
+                        InputDirectory,
+                        "Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.SampleApis.dll"),
+                    Path.Combine(
+                        InputDirectory,
+                        "Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.dll")
+                },
+                "1.0.0",
+                9,
+                Path.Combine(
+                    OutputDirectory,
+                    "AnnotationPredefinedOperationId.Json")
+            };
+
+            yield return new object[]
+            {
+                "A few operations have predefined operation Id, the others are generated",
+                new List<string>
+                {
+                    Path.Combine(InputDirectory, "AnnotationPredefinedAndGeneratedOperationId.xml"),
+                    Path.Combine(InputDirectory,
+                        "Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.xml")
+                },
+                new List<string>
+                {
+                    Path.Combine(
+                        InputDirectory,
+                        "Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.SampleApis.dll"),
+                    Path.Combine(
+                        InputDirectory,
+                        "Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.dll")
+                },
+                "1.0.0",
+                9,
+                Path.Combine(
+                    OutputDirectory,
+                    "AnnotationPredefinedAndGeneratedOperationId.Json")
+            };
         }
 
         [Theory]

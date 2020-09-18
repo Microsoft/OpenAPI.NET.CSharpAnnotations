@@ -245,15 +245,5 @@ namespace Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Extensions
 
             return value.Substring(startIndex: 0, length: 1).ToUpperInvariant() + value.Substring(startIndex: 1);
         }
-
-        /// <summary>
-        /// Extracts the absolute path from a full URL string.
-        /// </summary>
-        /// <param name="value">The string in URL format.</param>
-        /// <returns>The absolute path inside the URL.</returns>
-        public static string UrlStringToAbsolutePath(this string value)
-        {
-            return WebUtility.UrlDecode(new Uri(value).AbsolutePath);
-        }
     }
 }

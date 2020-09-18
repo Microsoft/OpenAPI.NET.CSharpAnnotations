@@ -20,6 +20,7 @@
         </PackageReference>
         <PackageReference Include="Microsoft.OpenApi" Version="1.1.1" />
         <PackageReference Include="Microsoft.OpenApi.Readers" Version="1.1.1" />
+        <PackageReference Include="Moq" Version="4.13.1" />
         <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
         <PackageReference Include="SharpYaml" Version="1.6.1">
         </PackageReference>
@@ -42,6 +43,18 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
       <None Update="DocumentVariantTests\Input\AnnotationWithDuplicatePaths.xml">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="OpenApiDocumentGeneratorTests\Input\AnnotationPredefinedAndGeneratedOperationId.xml">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="OpenApiDocumentGeneratorTests\Input\AnnotationPredefinedOperationId.xml">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="OpenApiDocumentGeneratorTests\Output\AnnotationPredefinedAndGeneratedOperationId.Json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="OpenApiDocumentGeneratorTests\Output\AnnotationPredefinedOperationId.Json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
       <None Update="OperationConfigTests\Input\AnnotationWithNoSimpleTypeReferenceInOperation.xml">

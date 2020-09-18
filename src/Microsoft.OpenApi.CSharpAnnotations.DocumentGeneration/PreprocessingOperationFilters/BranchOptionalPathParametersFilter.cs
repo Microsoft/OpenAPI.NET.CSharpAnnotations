@@ -19,8 +19,18 @@ namespace Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.PreprocessingOp
     /// Parses the value of the URL and creates multiple operations in the Paths object when
     /// there are optional path parameters.
     /// </summary>
-    public class BranchOptionalPathParametersFilter : IPreProcessingOperationFilter
+    public class BranchOptionalPathParametersFilter : ICreateOperationPreProcessingOperationFilter
     {
+        /// <summary>
+        /// Verifies that the annotation XML element contains all data which are required to apply this filter.
+        /// </summary>
+        /// <param name="element">The xml element representing an operation in the annotation xml.</param>
+        /// <returns>Always true (this filter can be always applied).</returns>
+        public bool IsApplicable(XElement element)
+        {
+            return true;
+        }
+
         /// <summary>
         /// Fetches the URL value and creates multiple operations based on optional parameters.
         /// </summary>
@@ -37,30 +47,18 @@ namespace Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.PreprocessingOp
 
             try
             {
-                var paramElements = element.Elements()
+                var paramPathElements = element.Elements()
                                 .Where(
                                     p => p.Name == KnownXmlStrings.Param)
+                                .Where(
+                                    p => p.Attribute(KnownXmlStrings.In)?.Value == KnownXmlStrings.Path)
                                 .ToList();
 
-                // We need both the full URL and the absolute paths for processing.
-                // Full URL contains all path and query parameters.
-                // Absolute path is needed to get OperationId parsed out correctly.
-                var fullUrl = element.Elements()
-                    .FirstOrDefault(p => p.Name == KnownXmlStrings.Url)
-                    ?.Value;
+                var absolutePath = OperationHandler.GetUrl(element);
 
-                var absolutePath = fullUrl.UrlStringToAbsolutePath();
+                var allGeneratedPathStrings = GeneratePossiblePaths(absolutePath, paramPathElements);
 
-                var operationMethod = (OperationType)Enum.Parse(
-                    typeof(OperationType),
-                    element.Elements().FirstOrDefault(p => p.Name == KnownXmlStrings.Verb)?.Value,
-                    ignoreCase: true);
-
-                var allGeneratedPathStrings = GeneratePossiblePaths(
-                    absolutePath,
-                    paramElements.Where(
-                            p => p.Attribute(KnownXmlStrings.In)?.Value == KnownXmlStrings.Path)
-                        .ToList());
+                var operationMethod = OperationHandler.GetOperationMethod(element);
 
                 foreach (var pathString in allGeneratedPathStrings)
                 {
@@ -72,7 +70,7 @@ namespace Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.PreprocessingOp
                     paths[pathString].Operations[operationMethod] =
                         new OpenApiOperation
                         {
-                            OperationId = OperationHandler.GetOperationId(pathString, operationMethod)
+                            OperationId = OperationHandler.GenerateOperationId(pathString, operationMethod)
                         };
                 }
             }

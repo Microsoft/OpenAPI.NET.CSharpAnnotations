@@ -113,7 +113,7 @@ namespace Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration
                         _defaultFilterSet.Add(new PopulateInAttributeFilter());
                         _defaultFilterSet.Add(new ConvertAlternativeParamTagsFilter());
                         _defaultFilterSet.Add(new ValidateInAttributeFilter());
-                        _defaultFilterSet.Add(new BranchOptionalPathParametersFilter());
+                        _defaultFilterSet.Add(new CreateOperationMetaFilter());
 
                         //Post processing document filters
                         _defaultFilterSet.Add(new RemoveFailedGenerationOperationFilter());

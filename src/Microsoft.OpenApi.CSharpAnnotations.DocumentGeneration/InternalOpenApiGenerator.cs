@@ -501,7 +501,7 @@ namespace Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration
 
                 try
                 {
-                    operationMethod = OperationHandler.GetOperationMethod(url, operationElement);
+                    operationMethod = OperationHandler.GetOperationMethod(operationElement);
                 }
                 catch (InvalidVerbException e)
                 {

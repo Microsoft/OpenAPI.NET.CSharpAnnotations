@@ -1,0 +1,758 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.SampleApis",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:9000"
+    }
+  ],
+  "paths": {
+    "/V1/samples/{id}": {
+      "get": {
+        "tags": [
+          "Sample V1"
+        ],
+        "summary": "Sample Get 1",
+        "operationId": "SampleControllerV1_SampleGet1",
+        "parameters": [
+          {
+            "name": "sampleHeaderParam1",
+            "in": "header",
+            "description": "Header param 1",
+            "schema": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject1"
+            }
+          },
+          {
+            "name": "sampleHeaderParam2",
+            "in": "header",
+            "description": "Header param 2",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.ISampleObject4_Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject1-Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject2_"
+              }
+            }
+          },
+          {
+            "name": "sampleHeaderParam3",
+            "in": "header",
+            "description": "Header param 3",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The object id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "queryBool",
+            "in": "query",
+            "description": "Sample query boolean",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sample object retrieved",
+            "headers": {
+              "TestHeader": {
+                "description": "Test Header",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject1"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Sample V1"
+        ],
+        "summary": "Sample put",
+        "operationId": "SampleControllerV1_SamplePut",
+        "parameters": [
+          {
+            "name": "sampleHeaderParam1",
+            "in": "header",
+            "description": "Header param 1",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            }
+          },
+          {
+            "name": "sampleHeaderParam2",
+            "in": "header",
+            "description": "Header param 2",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sampleHeaderParam3",
+            "in": "header",
+            "description": "Header param 3",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The object id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Sample object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject1"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The sample object updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject1"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/V1/samples": {
+      "get": {
+        "tags": [
+          "Sample V1"
+        ],
+        "summary": "Sample Get 2",
+        "operationId": "SampleControllerV1_SampleGet2",
+        "parameters": [
+          {
+            "name": "sampleHeaderParam1",
+            "in": "header",
+            "description": "Header param 1",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            }
+          },
+          {
+            "name": "sampleHeaderParam2",
+            "in": "header",
+            "description": "Header param 2",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sampleHeaderParam3",
+            "in": "header",
+            "description": "Header param 3",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paged Entity contract",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject3"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Sample V1"
+        ],
+        "summary": "Sample Post",
+        "operationId": "SampleControllerV1_SamplePost",
+        "parameters": [
+          {
+            "name": "sampleHeaderParam1",
+            "in": "header",
+            "description": "Header param 1",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            }
+          },
+          {
+            "name": "sampleHeaderParam2",
+            "in": "header",
+            "description": "Header param 2",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sampleHeaderParam3",
+            "in": "header",
+            "description": "Header param 3",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Sample object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject3"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Sample object posted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject3"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/V3/samples/": {
+      "get": {
+        "tags": [
+          "Sample V3"
+        ],
+        "summary": "Sample get 1",
+        "operationId": "SampleControllerV3_SampleGet1",
+        "parameters": [
+          {
+            "name": "sampleHeaderParam1",
+            "in": "header",
+            "description": "Header param 1",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            }
+          },
+          {
+            "name": "sampleHeaderParam2",
+            "in": "header",
+            "description": "Header param 2",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sampleHeaderParam3",
+            "in": "header",
+            "description": "Header param 3",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of sample objects.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.ISampleObject4_Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject1-Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject2_"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/V3/samples/{id}": {
+      "get": {
+        "tags": [
+          "Sample V3"
+        ],
+        "summary": "Sample get 2",
+        "operationId": "SampleControllerV3_SampleGet2",
+        "parameters": [
+          {
+            "name": "sampleHeaderParam1",
+            "in": "header",
+            "description": "Header param 1",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            }
+          },
+          {
+            "name": "sampleHeaderParam2",
+            "in": "header",
+            "description": "Header param 2",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sampleHeaderParam3",
+            "in": "header",
+            "description": "Header param 3",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The object id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "queryString",
+            "in": "query",
+            "description": "The sample query string",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of sample objects.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.ISampleObject4_Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject1-Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject2_"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/V2/samples/{id}": {
+      "delete": {
+        "tags": [
+          "Sample V2"
+        ],
+        "summary": "Sample delete",
+        "operationId": "SampleControllerV2_DeleteEntity",
+        "parameters": [
+          {
+            "name": "sampleHeaderParam1",
+            "in": "header",
+            "description": "Header param 1",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            }
+          },
+          {
+            "name": "sampleHeaderParam2",
+            "in": "header",
+            "description": "Header param 2",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sampleHeaderParam3",
+            "in": "header",
+            "description": "Header param 3",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The object id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sample object deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject1"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Sample V2"
+        ],
+        "summary": "Sample get 2",
+        "operationId": "SampleControllerV2_SampleGet2",
+        "parameters": [
+          {
+            "name": "sampleHeaderParam1",
+            "in": "header",
+            "description": "Header param 1",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            }
+          },
+          {
+            "name": "sampleHeaderParam2",
+            "in": "header",
+            "description": "Header param 2",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sampleHeaderParam3",
+            "in": "header",
+            "description": "Header param 3",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The object id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "queryString",
+            "in": "query",
+            "description": "The sample query string",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sample object retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject2"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/V2/samples/": {
+      "get": {
+        "tags": [
+          "Sample V2"
+        ],
+        "summary": "Sample get 1",
+        "operationId": "SampleControllerV2_SampleGet1",
+        "parameters": [
+          {
+            "name": "sampleHeaderParam1",
+            "in": "header",
+            "description": "Header param 1",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            }
+          },
+          {
+            "name": "sampleHeaderParam2",
+            "in": "header",
+            "description": "Header param 2",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sampleHeaderParam3",
+            "in": "header",
+            "description": "Header param 3",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of sample objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject2"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject1": {
+        "required": [
+          "samplePropertyString3",
+          "samplePropertyString4",
+          "samplePropertyEnum"
+        ],
+        "type": "object",
+        "properties": {
+          "samplePropertyBool": {
+            "type": "boolean",
+            "description": "Gets or sets the sample property bool"
+          },
+          "samplePropertyStringInt": {
+            "type": "integer",
+            "description": "Gets or sets the sample property int",
+            "format": "int32"
+          },
+          "samplePropertyString1": {
+            "type": "string",
+            "description": "Gets or sets the sample property string 1"
+          },
+          "samplePropertyString2": {
+            "type": "string",
+            "description": "Gets or sets the sample property string 2"
+          },
+          "samplePropertyString3": {
+            "type": "string",
+            "description": "Gets or sets the sample property string 3"
+          },
+          "samplePropertyString4": {
+            "type": "string",
+            "description": "Gets or sets the sample property string 4"
+          },
+          "samplePropertyEnum": {
+            "enum": [
+              "SampleEnumValue1",
+              "SampleEnumValue2"
+            ],
+            "type": "string",
+            "description": "Gets or sets the sample property enum"
+          }
+        }
+      },
+      "Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.ISampleObject4_Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject1-Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject2_": {
+        "required": [
+          "samplePropertyTypeT1",
+          "samplePropertyTypeT2"
+        ],
+        "type": "object",
+        "properties": {
+          "samplePropertyTypeT1": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject1"
+          },
+          "samplePropertyTypeT2": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject2"
+          }
+        }
+      },
+      "Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject2": {
+        "required": [
+          "samplePropertyInt",
+          "samplePropertyObjectDictionary",
+          "samplePropertyObjectList"
+        ],
+        "type": "object",
+        "properties": {
+          "samplePropertyEnum": {
+            "enum": [
+              "SampleEnumValue1",
+              "SampleEnumValue2"
+            ],
+            "type": "string",
+            "description": "Gets or sets the sample property enum"
+          },
+          "samplePropertyInt": {
+            "type": "string",
+            "description": "Gets or sets the sample property string 1"
+          },
+          "samplePropertyObjectDictionary": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject1"
+            },
+            "description": "Gets the sample property object dictionary"
+          },
+          "samplePropertyObjectList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject1"
+            },
+            "description": "Gets the sample property object list"
+          },
+          "samplePropertyString1": {
+            "type": "string",
+            "description": "Gets or sets the sample property string 1"
+          }
+        }
+      },
+      "Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject3": {
+        "required": [
+          "samplePropertyObject"
+        ],
+        "type": "object",
+        "properties": {
+          "samplePropertyObject": {
+            "$ref": "#/components/schemas/Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject2"
+          },
+          "samplePropertyObjectList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject1"
+            },
+            "description": "Gets the sample property object list"
+          }
+        }
+      }
+    }
+  }
+}

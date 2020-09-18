@@ -123,5 +123,9 @@ namespace Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration
 
         public const string NotSupportedTypeAttributeValue =
             "Documented type: \"{0}\" is not supported for \"type\" attribute value in tag: \"{1}\". Supported values are: {2}.";
+
+        public const string NoOperationId = "No operationId element is present in the operation.";
+
+        public const string MultipleOperationId = "More than one operationId element is not accepted in the operation.";
     }
 }

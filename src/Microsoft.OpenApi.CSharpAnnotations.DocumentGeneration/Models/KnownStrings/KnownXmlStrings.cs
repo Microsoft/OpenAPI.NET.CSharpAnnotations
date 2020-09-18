@@ -64,6 +64,7 @@ namespace Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Models.KnownStr
         public const string AuthorizationCode = "authorizationCode";
         public const string ClientCredentials = "clientCredentials";
         public const string Scope = "scope";
+        public const string OperationId = "operationId";
         public static string[] AllowedAppKeyInValues => new[] {Header, Query, Cookie};
 
         public static string[] AllowedFlowTypeValues => new[]

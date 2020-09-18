@@ -19,9 +19,40 @@ namespace Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration
     internal static class OperationHandler
     {
         /// <summary>
-        /// Gets the operation id by parsing segments out of the absolute path.
+        /// Checks whether the optional operation id tag is present in the operation element.
         /// </summary>
-        public static string GetOperationId(string absolutePath, OperationType operationMethod)
+        /// <param name="operationElement"></param>
+        /// <returns>True if the operationId tag is in the operation element, otherwise false.</returns>
+        public static bool HasOperationId(XElement operationElement)
+        {
+            return operationElement?.Elements().Where(p => p.Name == KnownXmlStrings.OperationId).Any() ?? false;
+        }
+
+        /// <summary>
+        /// Extracts the operation id from the operation element.
+        /// </summary>
+        /// <param name="operationElement"></param>
+        /// <returns>Operation id.</returns>
+        /// <exception cref="InvalidOperationIdException">Thrown if the operationId tag is missing or
+        /// there are more than one tags.</exception>
+        public static string GetOperationId(XElement operationElement)
+        {
+            var operationIdList = operationElement?.Elements().Where(p => p.Name == KnownXmlStrings.OperationId).ToList();
+            if (operationIdList?.Count == 1)
+            {
+                return operationIdList[0].Value;
+            }
+
+            string error = operationIdList.Count > 1
+                ? SpecificationGenerationMessages.MultipleOperationId
+                : SpecificationGenerationMessages.NoOperationId;
+            throw new InvalidOperationIdException(error);
+        }
+
+        /// <summary>
+        /// Generates the operation id by parsing segments out of the absolute path.
+        /// </summary>
+        public static string GenerateOperationId(string absolutePath, OperationType operationMethod)
         {
             var operationId = new StringBuilder(operationMethod.ToString().ToLowerInvariant());
 
@@ -63,10 +94,9 @@ namespace Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration
         /// <summary>
         /// Extracts the operation method from the operation element
         /// </summary>
+        /// <param name="operationElement">The xml element representing an operation in the annotation xml.</param>
         /// <exception cref="InvalidVerbException">Thrown if the verb is missing or has invalid format.</exception>
-        public static OperationType GetOperationMethod(
-            string url,
-            XElement operationElement)
+        public static OperationType GetOperationMethod(XElement operationElement)
         {
             var verbElement = operationElement.Descendants().FirstOrDefault(i => i.Name == KnownXmlStrings.Verb);
 
@@ -85,6 +115,7 @@ namespace Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration
         /// <summary>
         /// Extracts the URL from the operation element
         /// </summary>
+        /// <param name="operationElement">The xml element representing an operation in the annotation xml.</param>
         /// <exception cref="InvalidUrlException">Thrown if the URL is missing or has invalid format.</exception>
         public static string GetUrl(
             XElement operationElement)
@@ -103,7 +134,7 @@ namespace Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration
 
             try
             {
-                url = WebUtility.UrlDecode(new Uri(url).AbsolutePath);
+                url = WebUtility.UrlDecode(new Uri(WebUtility.UrlDecode(url)).AbsolutePath);
             }
             catch (UriFormatException)
             {
