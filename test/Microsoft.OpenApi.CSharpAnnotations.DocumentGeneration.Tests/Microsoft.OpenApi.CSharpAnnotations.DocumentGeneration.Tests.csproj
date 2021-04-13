@@ -44,6 +44,12 @@
       <None Update="DocumentVariantTests\Input\AnnotationWithDuplicatePaths.xml">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+      <None Update="OpenApiDocumentGeneratorTests\Input\AnnotationInQueryParamMediaType.xml">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="OpenApiDocumentGeneratorTests\Output\AnnotationInQueryParamMediaType.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
       <None Update="OperationConfigTests\Input\AnnotationWithNoSimpleTypeReferenceInOperation.xml">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>

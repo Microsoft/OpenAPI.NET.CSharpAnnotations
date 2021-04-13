@@ -1,0 +1,161 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.SampleApis",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://myapi.sample.com"
+    }
+  ],
+  "paths": {
+    "/V7/samples/{id}": {
+      "get": {
+        "tags": [
+          "Sample V7"
+        ],
+        "summary": "Sample get 1",
+        "operationId": "getV7SamplesById",
+        "parameters": [
+          {
+            "name": "queryString",
+            "in": "query",
+            "description": "Query param 1 with no media type",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sampleObjectInQuery2",
+            "in": "query",
+            "description": "Query param as application/json content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject1"
+                }
+              }
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The object id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sample object retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject1"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject1": {
+        "required": [
+          "samplePropertyString3",
+          "samplePropertyString4",
+          "samplePropertyEnum"
+        ],
+        "type": "object",
+        "properties": {
+          "samplePropertyBool": {
+            "type": "boolean",
+            "description": "Gets or sets the sample property bool"
+          },
+          "samplePropertyStringInt": {
+            "type": "integer",
+            "description": "Gets or sets the sample property int",
+            "format": "int32"
+          },
+          "samplePropertyString1": {
+            "type": "string",
+            "description": "Gets or sets the sample property string 1"
+          },
+          "samplePropertyString2": {
+            "type": "string",
+            "description": "Gets or sets the sample property string 2"
+          },
+          "samplePropertyString3": {
+            "type": "string",
+            "description": "Gets or sets the sample property string 3"
+          },
+          "samplePropertyString4": {
+            "type": "string",
+            "description": "Gets or sets the sample property string 4"
+          },
+          "samplePropertyEnum": {
+            "enum": [
+              "SampleEnumValue1",
+              "SampleEnumValue2"
+            ],
+            "type": "string",
+            "description": "Gets or sets the sample property enum"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "http-bearer": {
+        "type": "http",
+        "description": "Test security",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      },
+      "oauth": {
+        "type": "oauth2",
+        "description": "Test security",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://example.com/api/oauth/dialog",
+            "refreshUrl": "https://example.com/api/oauth/dialog",
+            "scopes": {
+              "scope1": "Example flow description"
+            }
+          }
+        }
+      },
+      "openIdConnect": {
+        "type": "openIdConnect",
+        "description": "Test security",
+        "openIdConnectUrl": "https://example.com/api/oauth/dialog"
+      }
+    }
+  },
+  "security": [
+    {
+      "http-bearer": [],
+      "oauth": [
+        "scope1"
+      ],
+      "openIdConnect": [
+        "scope1",
+        "scope2"
+      ]
+    }
+  ]
+}

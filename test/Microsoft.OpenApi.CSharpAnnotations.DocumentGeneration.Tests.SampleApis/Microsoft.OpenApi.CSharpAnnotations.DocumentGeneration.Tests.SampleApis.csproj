@@ -118,6 +118,7 @@
     <Compile Include="Controllers\SampleV4Controller.cs" />
     <Compile Include="Controllers\SampleV6Controller.cs" />
     <Compile Include="Controllers\SampleV5Controller.cs" />
+    <Compile Include="Controllers\SampleV7Controller.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

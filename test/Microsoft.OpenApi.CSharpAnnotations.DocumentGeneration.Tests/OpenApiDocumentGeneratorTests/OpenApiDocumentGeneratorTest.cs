@@ -1094,6 +1094,32 @@ namespace Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.OpenApiDo
                     OutputDirectory,
                     "AnnotationWithRuntimeSerialization.Json")
             };
+
+            // Valid XML document with object type in param tags and set with media type application/json
+            yield return new object[]
+            {
+                "Object Type in Param Tags",
+                new List<string>
+                {
+                    Path.Combine(InputDirectory, "AnnotationInQueryParamMediaType.xml"),
+                    Path.Combine(InputDirectory,
+                        "Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.xml")
+                },
+                new List<string>
+                {
+                    Path.Combine(
+                        InputDirectory,
+                        "Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.SampleApis.dll"),
+                    Path.Combine(
+                        InputDirectory,
+                        "Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.dll")
+                },
+                "1.0.0",
+                1,
+                Path.Combine(
+                    OutputDirectory,
+                    "AnnotationInQueryParamMediaType.Json")
+            };
         }
 
         [Theory]

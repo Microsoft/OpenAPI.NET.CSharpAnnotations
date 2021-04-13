@@ -64,6 +64,7 @@ namespace Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.OperationFilter
                 {
                     var inValue = paramElement.Attribute(KnownXmlStrings.In)?.Value.Trim();
                     var name = paramElement.Attribute(KnownXmlStrings.Name)?.Value.Trim();
+                    var mediaType = paramElement.Attribute(KnownXmlStrings.Type)?.Value ?? "";
 
                     if (settings.RemoveRoslynDuplicateStringFromParamName)
                     {
@@ -145,9 +146,19 @@ namespace Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.OperationFilter
                         In = parameterLocation,
                         Description = description,
                         Required = parameterLocation == ParameterLocation.Path || Convert.ToBoolean(isRequired),
-                        Schema = schema,
                         Examples = examples.Any() ? examples : null
                     };
+
+                    // If media type is specified add parameter as content for complex serialization
+                    if (!string.IsNullOrEmpty(mediaType)) {
+                        openApiParameter.Content = new Dictionary<string, OpenApiMediaType>
+                        {
+                            [mediaType] = new OpenApiMediaType { Schema = schema }
+                        };
+                    }
+                    else {
+                        openApiParameter.Schema = schema;
+                    }
 
                     operation.Parameters.Add(openApiParameter);
                 }

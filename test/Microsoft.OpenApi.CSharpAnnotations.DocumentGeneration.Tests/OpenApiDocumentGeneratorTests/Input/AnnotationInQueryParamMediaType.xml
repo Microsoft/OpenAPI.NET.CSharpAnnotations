@@ -1,0 +1,89 @@
+﻿<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.SampleApis</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.SampleApis.RouteConfig">
+      <summary>
+        Responsible for route configuration
+      </summary>
+    </member>
+    <member name="M:Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.SampleApis.RouteConfig.RegisterRoutes(System.Web.Routing.RouteCollection)">
+      <summary>
+        Registers routes
+      </summary>
+      <param name="routes">Route collection</param>
+    </member>
+    <member name="T:Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.SampleApis.WebApiConfig">
+      <summary>
+        Web config.
+      </summary>
+      <security type="http" name="http-bearer">
+        <description>Test security</description>
+        <scheme>bearer</scheme>
+        <bearerFormat>JWT</bearerFormat>
+      </security>
+      <security type="oauth2" name="oauth">
+        <description>Test security</description>
+        <flow type="implicit">
+          <authorizationUrl>https://example.com/api/oauth/dialog</authorizationUrl>
+          <refreshUrl>https://example.com/api/oauth/dialog</refreshUrl>
+          <scope name="scope1">
+            <description>Example flow description</description>
+          </scope>
+        </flow>
+      </security>
+      <security type="openIdConnect" name="openIdConnect">
+        <description>Test security</description>
+        <openIdConnectUrl>https://example.com/api/oauth/dialog</openIdConnectUrl>
+        <scope name="scope1">
+          <description>Scope 1 description</description>
+        </scope>
+        <scope name="scope2">
+          <description>Scope 2 description</description>
+        </scope>
+      </security>
+    </member>
+    <member name="M:Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.SampleApis.WebApiConfig.Register(System.Web.Http.HttpConfiguration)">
+      <summary>
+        Register the configuration, services, and routes.
+      </summary>
+      <param name="config">HTTP Configuration</param>
+    </member>
+    <member name="T:Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.SampleApis.Controllers.SampleV7Controller">
+      <summary>
+        Sample v7 controller.
+      </summary>
+    </member>
+    <member name="M:Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.SampleApis.Controllers.SampleV7Controller.SampleGet1(System.String,System.String)">
+      <summary>
+        Sample get 1
+      </summary>
+      <group>Sample V7</group>
+      <verb>GET</verb>
+      <url>https://myapi.sample.com/V7/samples/{id}?queryString={queryString}</url>
+      <param name="queryString" cref="T:System.String" in="query">Query param 1 with no media type</param>
+      <!-- Query parameter with media type -->
+      <param name="sampleObjectInQuery2" cref="T:Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject1" in="query" type="application/json">Query param as application/json content</param>
+      <!-- ////////////////////// -->
+      <param name="id" cref="T:System.String" in="path">The object id</param>
+      <response code="200">
+        <see cref="T:Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.Contracts.SampleObject1"/>Sample object retrieved
+      </response>
+      <response code="400">
+        <see cref="T:System.String"/>Bad request
+      </response>
+    </member>
+    <member name="T:Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.SampleApis.WebApiApplication">
+      <summary>
+        Web API Application.
+      </summary>
+    </member>
+    <member name="M:Microsoft.OpenApi.CSharpAnnotations.DocumentGeneration.Tests.SampleApis.WebApiApplication.Application_Start">
+      <summary>
+        Start application.
+      </summary>
+    </member>
+  </members>
+</doc>
